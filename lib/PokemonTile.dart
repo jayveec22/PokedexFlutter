@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pokedex_app_flutter/Pokemon.dart';
+import 'package:pokedex_app_flutter/Models/Pokemon.dart';
 
 class PokemonTile extends StatelessWidget {
   final Pokemon pokemon;
@@ -45,7 +45,7 @@ class PokemonTile extends StatelessWidget {
                   child: Container(
                     color: Colors.black,
                     child: Text(
-                      '${pokemon.height} cm',
+                      '${double.parse(pokemon.height) / 10} cm',
                       textAlign: TextAlign.center,
                       style: TextStyle(
                         fontSize: 13.0,

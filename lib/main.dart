@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pokedex_app_flutter/HomeScreen.dart';
+import 'package:pokedex_app_flutter/HomeScreenPage.dart';
 
 void main() => runApp(Pokedex());
 
@@ -9,7 +9,7 @@ class Pokedex extends StatelessWidget {
     return MaterialApp(
       title: 'Pokedex',
       theme: ThemeData(primaryColor: Colors.lightBlueAccent),
-      home: HomeScreen(),
+      home: HomeScreenPage(),
     );
   }
 }
