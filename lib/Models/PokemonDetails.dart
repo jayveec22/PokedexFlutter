@@ -14,13 +14,14 @@ class PokemonDetails {
     return names;
   }
 
-  PokemonDetails(
-      {this.name,
-      this.id,
-      this.weight,
-      this.height,
-      this.statistics,
-      this.types});
+  PokemonDetails({
+    this.name,
+    this.id,
+    this.weight,
+    this.height,
+    this.statistics,
+    this.types,
+  });
 
   factory PokemonDetails.fromJson(Map<String, dynamic> json) {
     return PokemonDetails(
@@ -50,7 +51,10 @@ class Statistics {
   final int baseStats;
   final Statistic statistic;
 
-  Statistics({this.baseStats, this.statistic});
+  Statistics({
+    this.baseStats,
+    this.statistic,
+  });
 
   factory Statistics.fromJson(Map<String, dynamic> json) {
     return Statistics(

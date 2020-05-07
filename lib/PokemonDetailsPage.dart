@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'Models/PokemonStatistics.dart';
 import 'Models/PokemonData.dart';
+import 'Models/PokemonStatistics.dart';
 
 class PokemonDetailsPage extends StatefulWidget {
   final Future<PokemonData> futurePokemonData;
@@ -15,7 +15,6 @@ class PokemonDetailsPage extends StatefulWidget {
 class _PokemonDetailsPageState extends State<PokemonDetailsPage> {
   PokemonData pokemonData;
   Map<int, Widget> detailPages;
-
   int sharedValue = 0;
 
   @override
@@ -28,63 +27,74 @@ class _PokemonDetailsPageState extends State<PokemonDetailsPage> {
               if (snapshot.hasData) {
                 return Text(snapshot.data.pokemonDetails.name.toUpperCase());
               }
-
+              
               return Text('');
             }),
       ),
-      body: Container(
-        color: Colors.white60,
-        child: Column(
-          children: <Widget>[
-            const Padding(
-              padding: EdgeInsets.all(16.0),
-            ),
-            SizedBox(
-              width: 300.0,
-              child: CupertinoSegmentedControl<int>(
-                selectedColor: Colors.black87,
-                borderColor: Colors.black87,
-                children: {
-                  0: Text('Details'),
-                  1: Text('Statistics'),
-                },
-                onValueChanged: (int val) {
-                  setState(() {
-                    sharedValue = val;
-                  });
-                },
-                groupValue: sharedValue,
+      body: SingleChildScrollView(
+        child: Container(
+          color: Colors.white60,
+          child: Column(
+            children: <Widget>[
+              const Padding(
+                padding: EdgeInsets.all(16.0),
               ),
-            ),
-            FutureBuilder<PokemonData>(
-              future: widget.futurePokemonData,
-              builder: (context, snapshot) {
-                if (snapshot.hasData) {
-                  this.pokemonData = snapshot.data;
-                  if (this.detailPages == null) {
-                    this.detailPages = <int, Widget>{
-                      0: pokemonOverview(),
-                      1: pokemonStatistics(),
-                    };
+              SizedBox(
+                width: 300.0,
+                child: CupertinoSegmentedControl<int>(
+                  selectedColor: Colors.black87,
+                  borderColor: Colors.black87,
+                  children: {
+                    0: Text('Details'),
+                    1: Text('Statistics'),
+                  },
+                  onValueChanged: (int val) {
+                    setState(() {
+                      sharedValue = val;
+                    });
+                  },
+                  groupValue: sharedValue,
+                ),
+              ),
+              FutureBuilder<PokemonData>(
+                future: widget.futurePokemonData,
+                builder: (context, snapshot) {
+                  if (snapshot.hasData) {
+                    this.pokemonData = snapshot.data;
+                    if (this.detailPages == null) {
+                      this.detailPages = <int, Widget>{
+                        0: PokemonOverviewPage(pokemonData: this.pokemonData),
+                        1: PokemonStatisticsPage(pokemonData: this.pokemonData),
+                      };
+                    }
+
+                    return this.detailPages[sharedValue];
+                  } else if (snapshot.hasError) {
+                    return Text('Pokemon request error: ${snapshot.error}');
                   }
 
-                  return this.detailPages[sharedValue];
-                } else if (snapshot.hasError) {
-                  return Text('Pokemon request error: ${snapshot.error}');
-                }
-
-                return Center(
-                  child: CircularProgressIndicator(),
-                );
-              },
-            ),
-          ],
+                  return Center(
+                    child: CircularProgressIndicator(),
+                  );
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );
   }
+}
 
-  Widget pokemonOverview() {
+class PokemonOverviewPage extends StatelessWidget {
+  final PokemonData pokemonData;
+
+  PokemonOverviewPage({this.pokemonData});
+
+  @override
+  Widget build(BuildContext context) {
+    final size = MediaQuery.of(context).size;
+
     return Padding(
       padding: const EdgeInsets.symmetric(
         horizontal: 10.0,
@@ -157,7 +167,7 @@ class _PokemonDetailsPageState extends State<PokemonDetailsPage> {
                                   .pokemonDetails
                                   .typeNames()
                                   .length,
-                                scrollDirection: Axis.horizontal,
+                              scrollDirection: Axis.horizontal,
                               itemBuilder: (context, int) {
                                 return Container(
                                   height: 15.0,
@@ -195,11 +205,14 @@ class _PokemonDetailsPageState extends State<PokemonDetailsPage> {
               physics: NeverScrollableScrollPhysics(),
               scrollDirection: Axis.horizontal,
               shrinkWrap: true,
-              padding: EdgeInsets.symmetric(horizontal: 5.0, vertical: 5.0),
+              padding: EdgeInsets.symmetric(
+                horizontal: 5.0,
+                vertical: 5.0,
+              ),
               itemCount: this.pokemonData.pokemonEvolutions.length,
               itemBuilder: (context, int) {
                 return Container(
-                  width: 100.0,
+                  width: size.width * 0.25,
                   height: 100.0,
                   child: Image.asset(
                     'assets/images/pokemons/${this.pokemonData.pokemonEvolutions[int].id}.png',
@@ -218,8 +231,15 @@ class _PokemonDetailsPageState extends State<PokemonDetailsPage> {
       ),
     );
   }
+}
 
-  Widget pokemonStatistics() {
+class PokemonStatisticsPage extends StatelessWidget {
+  final PokemonData pokemonData;
+
+  PokemonStatisticsPage({this.pokemonData});
+
+  @override
+  Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.symmetric(
         horizontal: 16.0,
@@ -234,7 +254,7 @@ class _PokemonDetailsPageState extends State<PokemonDetailsPage> {
                 border: Border.all(),
               ),
               child: Image.asset(
-                'assets/images/pokemons/${pokemonData.pokemonDetails.id}.png',
+                'assets/images/pokemons/${this.pokemonData.pokemonDetails.id}.png',
                 fit: BoxFit.scaleDown,
               ),
             ),
@@ -251,53 +271,80 @@ class _PokemonDetailsPageState extends State<PokemonDetailsPage> {
             SizedBox(
               height: 25.0,
             ),
-            statisticsProgressBar(PokemonStatistics(
+            StatisticsProgressBar(
+              PokemonStatistics(
                 statistic: StatisticsType.hp,
-                pokemonDetails: pokemonData.pokemonDetails)),
+                pokemonDetails: this.pokemonData.pokemonDetails,
+              ),
+            ),
             SizedBox(height: 10.0),
-            statisticsProgressBar(PokemonStatistics(
+            StatisticsProgressBar(
+              PokemonStatistics(
                 statistic: StatisticsType.attack,
-                pokemonDetails: pokemonData.pokemonDetails)),
+                pokemonDetails: this.pokemonData.pokemonDetails,
+              ),
+            ),
             SizedBox(height: 10.0),
-            statisticsProgressBar(PokemonStatistics(
+            StatisticsProgressBar(
+              PokemonStatistics(
                 statistic: StatisticsType.defense,
-                pokemonDetails: pokemonData.pokemonDetails)),
+                pokemonDetails: this.pokemonData.pokemonDetails,
+              ),
+            ),
             SizedBox(height: 10.0),
-            statisticsProgressBar(PokemonStatistics(
+            StatisticsProgressBar(
+              PokemonStatistics(
                 statistic: StatisticsType.specialAttack,
-                pokemonDetails: pokemonData.pokemonDetails)),
+                pokemonDetails: this.pokemonData.pokemonDetails,
+              ),
+            ),
             SizedBox(height: 10.0),
-            statisticsProgressBar(PokemonStatistics(
+            StatisticsProgressBar(
+              PokemonStatistics(
                 statistic: StatisticsType.specialDefense,
-                pokemonDetails: pokemonData.pokemonDetails)),
+                pokemonDetails: this.pokemonData.pokemonDetails,
+              ),
+            ),
             SizedBox(height: 10.0),
-            statisticsProgressBar(PokemonStatistics(
+            StatisticsProgressBar(
+              PokemonStatistics(
                 statistic: StatisticsType.speed,
-                pokemonDetails: pokemonData.pokemonDetails)),
+                pokemonDetails: this.pokemonData.pokemonDetails,
+              ),
+            ),
           ],
         ),
       ),
     );
   }
+}
 
-  Widget statisticsProgressBar(PokemonStatistics statistics) {
+class StatisticsProgressBar extends StatelessWidget {
+  final PokemonStatistics statistics;
+
+  StatisticsProgressBar(this.statistics);
+
+  @override
+  Widget build(BuildContext context) {
+    final Size size = MediaQuery.of(context).size;
+
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: <Widget>[
         Text(
-          '${statistics.title()}:',
+          '${this.statistics.title()}:',
         ),
         SizedBox(
           height: 20.0,
-          width: 250.0,
+          width: size.width * 0.60,
           child: ClipRRect(
             borderRadius: BorderRadius.circular(25.0),
             child: LinearProgressIndicator(
               backgroundColor: Colors.black87,
               valueColor: AlwaysStoppedAnimation<Color>(
-                statistics.color(),
+                this.statistics.color(),
               ),
-              value: statistics.value(),
+              value: this.statistics.value(),
             ),
           ),
         ),

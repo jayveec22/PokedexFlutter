@@ -14,7 +14,10 @@ class PokemonStatistics {
   final StatisticsType statistic;
   final PokemonDetails pokemonDetails;
 
-  PokemonStatistics({this.statistic, this.pokemonDetails});
+  PokemonStatistics({
+    this.statistic,
+    this.pokemonDetails,
+  });
 
   String title() {
     switch (this.statistic) {
