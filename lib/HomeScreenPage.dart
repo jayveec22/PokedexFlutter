@@ -1,11 +1,11 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:pokedex_app_flutter/Models/Pokemon.dart';
-import 'package:pokedex_app_flutter/Models/PokemonData.dart';
-import 'package:pokedex_app_flutter/Network/PokemonServices.dart';
-import 'package:pokedex_app_flutter/PokemonDetailsPage.dart';
-import 'package:pokedex_app_flutter/PokemonTile.dart';
+import 'Models/Pokemon.dart';
+import 'Models/PokemonData.dart';
+import 'Network/PokemonServices.dart';
+import 'PokemonDetailsPage.dart';
+import 'PokemonTile.dart';
 
 final pokemonServices = new PokemonServices();
 

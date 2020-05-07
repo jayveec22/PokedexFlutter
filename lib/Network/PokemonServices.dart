@@ -1,10 +1,10 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:http/http.dart';
-import 'package:pokedex_app_flutter/Models/PokemonDescription.dart';
-import 'package:pokedex_app_flutter/Models/PokemonDetails.dart';
-import 'package:pokedex_app_flutter/Models/PokemonEvolution.dart';
-import 'package:pokedex_app_flutter/Models/PokemonEvolutionNode.dart';
+import '../Models/PokemonDescription.dart';
+import '../Models/PokemonDetails.dart';
+import '../Models/PokemonEvolution.dart';
+import '../Models/PokemonEvolutionNode.dart';
 
 class PokemonServices {
   Future<PokemonDetails> fetchPokemonDetails(String id) async {

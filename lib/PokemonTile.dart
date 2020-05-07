@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pokedex_app_flutter/Models/Pokemon.dart';
+import 'Models/Pokemon.dart';
 
 class PokemonTile extends StatelessWidget {
   final Pokemon pokemon;

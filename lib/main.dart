@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pokedex_app_flutter/HomeScreenPage.dart';
+import 'HomeScreenPage.dart';
 
 void main() => runApp(Pokedex());
 

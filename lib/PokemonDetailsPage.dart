@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:pokedex_app_flutter/Models/PokemonData.dart';
-import 'package:pokedex_app_flutter/Models/PokemonStatistics.dart';
+import 'Models/PokemonStatistics.dart';
+import 'Models/PokemonData.dart';
 
 class PokemonDetailsPage extends StatefulWidget {
   final Future<PokemonData> futurePokemonData;

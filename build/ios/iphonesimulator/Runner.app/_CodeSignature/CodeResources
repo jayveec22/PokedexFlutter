@@ -82,11 +82,11 @@
 		</data>
 		<key>Assets.car</key>
 		<data>
-		5QiIsmqdjkcukXWpHw3BfxFBzS4=
+		Iv1ZVkteE3lvla+K83oB0GRlDLc=
 		</data>
 		<key>Base.lproj/LaunchScreen.storyboardc/01J-lp-oVM-view-Ze5-6b-2t3.nib</key>
 		<data>
-		2Oa+YV1D25d3PUin6egYcden7kU=
+		AgMva22vvMT2wnRgC5/ul2uiamY=
 		</data>
 		<key>Base.lproj/LaunchScreen.storyboardc/Info.plist</key>
 		<data>
@@ -94,11 +94,11 @@
 		</data>
 		<key>Base.lproj/LaunchScreen.storyboardc/UIViewController-01J-lp-oVM.nib</key>
 		<data>
-		aE1j4MrngwJYhW5oOor9fBqpRGU=
+		T10fYF3v60oTNY7Rv/bn65QNfO0=
 		</data>
 		<key>Base.lproj/Main.storyboardc/BYZ-38-t0r-view-8bC-Xf-vdC.nib</key>
 		<data>
-		nHB7a4SIQX6MGQK0Zj+xuLkkZRE=
+		UqJITlxtwwK7wSkILDG3jjX7f+E=
 		</data>
 		<key>Base.lproj/Main.storyboardc/Info.plist</key>
 		<data>
@@ -106,11 +106,11 @@
 		</data>
 		<key>Base.lproj/Main.storyboardc/UIViewController-BYZ-38-t0r.nib</key>
 		<data>
-		qVQGBe2TOGO7P43mqpfvDOnmZBA=
+		o4kt5caLsUy8iEZWHrzzUPLc4t8=
 		</data>
 		<key>Frameworks/App.framework/App</key>
 		<data>
-		3s9VhK2vXsqGFevULOHw+9oaaCM=
+		CpPfM7fqN6z0ty9WOoVR3hma0MQ=
 		</data>
 		<key>Frameworks/App.framework/Info.plist</key>
 		<data>
@@ -118,11 +118,11 @@
 		</data>
 		<key>Frameworks/App.framework/_CodeSignature/CodeResources</key>
 		<data>
-		4w18bFwMke97pFwNuWV/4UvZAk8=
+		MWIqkhnoMh+Z+Vp1RTecRukrcpU=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/AssetManifest.json</key>
 		<data>
-		MLzBX1bNrdIeDr727t8IPcNX8hY=
+		KAgPDXIh3yuDGAtTZU0SHVAJ2Jk=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/FontManifest.json</key>
 		<data>
@@ -131,6 +131,10 @@
 		<key>Frameworks/App.framework/flutter_assets/LICENSE</key>
 		<data>
 		4+RP8PUAr6LgXc+Kpe2PLebn4aY=
+		</data>
+		<key>Frameworks/App.framework/flutter_assets/assets/images/.DS_Store</key>
+		<data>
+		ph9izN2hmUWK9J92DQThfdVaXVI=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/assets/images/pokemonBackground.png</key>
 		<data>
@@ -183,6 +187,10 @@
 		<key>Frameworks/App.framework/flutter_assets/assets/images/pokemonTypes/normal.png</key>
 		<data>
 		rZZK9v+FzeQGOAcsfuDCt3uVWVE=
+		</data>
+		<key>Frameworks/App.framework/flutter_assets/assets/images/pokemonTypes/poison.png</key>
+		<data>
+		RF38oetexH80f0qzpfr7XKVdONI=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/assets/images/pokemonTypes/psychic.png</key>
 		<data>
@@ -3082,7 +3090,7 @@
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/kernel_blob.bin</key>
 		<data>
-		I1mHXC2iiFqkDPHbI1aOvNyyH7M=
+		93vhHjS4n0b+YdtKSF6lOmWn2p0=
 		</data>
 		<key>Frameworks/App.framework/flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>
 		<data>
@@ -3094,7 +3102,7 @@
 		</data>
 		<key>Frameworks/Flutter.framework/Flutter</key>
 		<data>
-		YYoxAL9awpOqWuAvOtBPxbRwnEg=
+		A83NRjbRuMCypcQytFxocyWIVRU=
 		</data>
 		<key>Frameworks/Flutter.framework/Info.plist</key>
 		<data>
@@ -3360,22 +3368,22 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			5QiIsmqdjkcukXWpHw3BfxFBzS4=
+			Iv1ZVkteE3lvla+K83oB0GRlDLc=
 			</data>
 			<key>hash2</key>
 			<data>
-			kl7YE/2hRZF8g/UYA742oHHWUvqZ5V1A7A6t5ExOveE=
+			2tDNvzgqDz3BuPcO5ioXaODji43E5yQoXDSHjbY4GAw=
 			</data>
 		</dict>
 		<key>Base.lproj/LaunchScreen.storyboardc/01J-lp-oVM-view-Ze5-6b-2t3.nib</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			2Oa+YV1D25d3PUin6egYcden7kU=
+			AgMva22vvMT2wnRgC5/ul2uiamY=
 			</data>
 			<key>hash2</key>
 			<data>
-			dBTdJDEZEgyaWnd2ubxXTBeOzM+eeWA6chBHwkFdnn4=
+			5xsirA+GtuKEsHwwXOunDhssWsR0LAQGWArxIenMXFY=
 			</data>
 		</dict>
 		<key>Base.lproj/LaunchScreen.storyboardc/Info.plist</key>
@@ -3393,22 +3401,22 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			aE1j4MrngwJYhW5oOor9fBqpRGU=
+			T10fYF3v60oTNY7Rv/bn65QNfO0=
 			</data>
 			<key>hash2</key>
 			<data>
-			CEaFGMRTt4tolG2wZq+25WYBwIsOUiMY13ItwhNd0n4=
+			6+PqlYuGXkdNqXOZSW3Sv+a/ld4AlgTLhxT3wiNcH4M=
 			</data>
 		</dict>
 		<key>Base.lproj/Main.storyboardc/BYZ-38-t0r-view-8bC-Xf-vdC.nib</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			nHB7a4SIQX6MGQK0Zj+xuLkkZRE=
+			UqJITlxtwwK7wSkILDG3jjX7f+E=
 			</data>
 			<key>hash2</key>
 			<data>
-			fDikdZtzBZik9ES2hOHnImvjULmTW7j2YlhRBsiYBUg=
+			jFXV0rVQszkQeFKQ0cGDVxve0boXtiVVA+MdcyZjUj8=
 			</data>
 		</dict>
 		<key>Base.lproj/Main.storyboardc/Info.plist</key>
@@ -3426,22 +3434,22 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			qVQGBe2TOGO7P43mqpfvDOnmZBA=
+			o4kt5caLsUy8iEZWHrzzUPLc4t8=
 			</data>
 			<key>hash2</key>
 			<data>
-			mbb4B+U4Smg8LmwiFYgS2tVvVmvGqHqsNyIJ75hbaEw=
+			v4apVN6SqovwpjrDqaAtzwWVf8Q3YqrYEzM8cC7K8+Y=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/App</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			3s9VhK2vXsqGFevULOHw+9oaaCM=
+			CpPfM7fqN6z0ty9WOoVR3hma0MQ=
 			</data>
 			<key>hash2</key>
 			<data>
-			H6GiSRBZF6TVL9aD4YQJksArofAxvWZINXUjdKSzxmY=
+			G2Dj0/j6piEvW92oM7+VE09yfMvFEdbc6uMzRtPY4FY=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/Info.plist</key>
@@ -3459,22 +3467,22 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			4w18bFwMke97pFwNuWV/4UvZAk8=
+			MWIqkhnoMh+Z+Vp1RTecRukrcpU=
 			</data>
 			<key>hash2</key>
 			<data>
-			yTYXX4nKcr/+P5a2t9Ze+I2yLs53PRtj3oDg0x1Q4Fw=
+			6rQN3a0jubGq87FpIgH4EvyR8PQ9xXJTiQ9VtRMW3bk=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/AssetManifest.json</key>
 		<dict>
 			<key>hash</key>
 			<data>
-			MLzBX1bNrdIeDr727t8IPcNX8hY=
+			KAgPDXIh3yuDGAtTZU0SHVAJ2Jk=
 			</data>
 			<key>hash2</key>
 			<data>
-			ImwC377iQLRfn6Z7nQ+JhARQ9ZeNyjKHaEIa/9e7CAU=
+			Z41ob43+CCQ1UlKvFRMa3JOhhafNDwOu+t45PdssDhU=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/FontManifest.json</key>
@@ -3640,6 +3648,17 @@
 			<key>hash2</key>
 			<data>
 			f7D9dIFI/oKdQ5XLr+1+JI4zuWIkps0yy0Z5X8Cm6BU=
+			</data>
+		</dict>
+		<key>Frameworks/App.framework/flutter_assets/assets/images/pokemonTypes/poison.png</key>
+		<dict>
+			<key>hash</key>
+			<data>
+			RF38oetexH80f0qzpfr7XKVdONI=
+			</data>
+			<key>hash2</key>
+			<data>
+			/n0mQE+UcV9DkrQHXP1h/65X4dVQjoIaqyn1qxj+8mI=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/assets/images/pokemonTypes/psychic.png</key>
@@ -11610,11 +11629,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			I1mHXC2iiFqkDPHbI1aOvNyyH7M=
+			93vhHjS4n0b+YdtKSF6lOmWn2p0=
 			</data>
 			<key>hash2</key>
 			<data>
-			t2KjZtzmas2wdww/xIsosZ1X9tFIs870VKUI5b1cvbs=
+			WUq/fyg7mFYF0SnK2Um7IkvRbEt5AiE5FB/d0Qb1b8s=
 			</data>
 		</dict>
 		<key>Frameworks/App.framework/flutter_assets/packages/cupertino_icons/assets/CupertinoIcons.ttf</key>
@@ -11643,11 +11662,11 @@
 		<dict>
 			<key>hash</key>
 			<data>
-			YYoxAL9awpOqWuAvOtBPxbRwnEg=
+			A83NRjbRuMCypcQytFxocyWIVRU=
 			</data>
 			<key>hash2</key>
 			<data>
-			Etq9tkGJN8iOQIlYBSlNAFCs7IQkXG9TpH3bYQ4MoD4=
+			iH/KGEOg4GtfndXk4KSEMqn4C3J3NY5acL1aV6Bf8Rg=
 			</data>
 		</dict>
 		<key>Frameworks/Flutter.framework/Info.plist</key>

@@ -1,6 +1,6 @@
-import 'package:pokedex_app_flutter/Models/PokemonDescription.dart';
-import 'package:pokedex_app_flutter/Models/PokemonDetails.dart';
-import 'package:pokedex_app_flutter/Models/PokemonEvolutionNode.dart';
+import 'PokemonDescription.dart';
+import 'PokemonDetails.dart';
+import 'PokemonEvolutionNode.dart';
 
 class PokemonData {
   PokemonDetails pokemonDetails;
