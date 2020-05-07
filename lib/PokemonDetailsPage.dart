@@ -20,6 +20,7 @@ class _PokemonDetailsPageState extends State<PokemonDetailsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
         title: FutureBuilder<PokemonData>(
             future: widget.futurePokemonData,
@@ -27,13 +28,13 @@ class _PokemonDetailsPageState extends State<PokemonDetailsPage> {
               if (snapshot.hasData) {
                 return Text(snapshot.data.pokemonDetails.name.toUpperCase());
               }
-              
+
               return Text('');
             }),
       ),
       body: SingleChildScrollView(
         child: Container(
-          color: Colors.white60,
+          color: Colors.white,
           child: Column(
             children: <Widget>[
               const Padding(
