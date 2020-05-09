@@ -1,27 +1,55 @@
-import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'Models/Pokemon.dart';
-import 'Network/PokemonServices.dart';
-import 'PokemonDetailsPage.dart';
+import 'package:async_redux/async_redux.dart';
+import 'package:pokedex_app_flutter/models/app_state.dart';
+import 'package:pokedex_app_flutter/models/pokemon_model.dart';
+import 'package:pokedex_app_flutter/pokemon_details_page.dart';
+import 'package:pokedex_app_flutter/state/action_home_screen.dart';
 
-final pokemonServices = new PokemonServices();
-
-class HomeScreenPage extends StatefulWidget {
+class HomeScreenPageConnector extends StatelessWidget {
   @override
-  _HomeScreenPageState createState() => _HomeScreenPageState();
+  Widget build(BuildContext context) {
+    return StoreConnector<AppState, HomeScreenVM>(
+      model: HomeScreenVM(),
+      onInit: (store) => store.dispatch(InitializePokemonListAction()),
+      builder: (BuildContext context, HomeScreenVM vm) => HomeScreenPage(
+        initialPokemonList: vm.initialPokemonList,
+        pokemonList: vm.pokemonList,
+        onSearch: vm.onSearch,
+      ),
+    );
+  }
 }
 
-class _HomeScreenPageState extends State<HomeScreenPage> {
-  List<Pokemon> initialPokemonList = [];
-  List<Pokemon> filteredPokemonList = [];
-  bool isSearching = false;
+class HomeScreenVM extends BaseModel<AppState> {
+  HomeScreenVM();
+  List<Pokemon> initialPokemonList;
+  List<Pokemon> pokemonList;
+  Function(String) onSearch;
+
+  HomeScreenVM.build({
+    @required this.initialPokemonList,
+    @required this.pokemonList,
+    @required this.onSearch,
+  }) : super(equals: [initialPokemonList, pokemonList]);
 
   @override
-  void initState() {
-    super.initState();
-    this.loadCSV();
-  }
+  BaseModel fromStore() => HomeScreenVM.build(
+      initialPokemonList: state.initialPokemonList,
+      pokemonList: state.pokemonList,
+      onSearch: (text) => dispatch(FilterPokemonListAction(text: text)));
+}
+
+class HomeScreenPage extends StatelessWidget {
+  final List<Pokemon> initialPokemonList;
+  final List<Pokemon> pokemonList;
+  final Function(String) onSearch;
+
+  HomeScreenPage({
+    Key key,
+    this.initialPokemonList,
+    this.pokemonList,
+    this.onSearch,
+  }) : super(key: key);
 
   @override
   Widget build(Object context) {
@@ -29,7 +57,6 @@ class _HomeScreenPageState extends State<HomeScreenPage> {
       body: GestureDetector(
         onTap: () {
           FocusScope.of(context).requestFocus(FocusNode());
-          print('titi');
         },
         child: CustomScrollView(
           slivers: <Widget>[
@@ -68,10 +95,10 @@ class _HomeScreenPageState extends State<HomeScreenPage> {
                               hintText: 'Search Pokemon...',
                             ),
                             onChanged: (text) {
-                              this.setSearchBarStatus(text);
+                              this.onSearch(text);
                             },
                             onSubmitted: (text) {
-                              this.setSearchBarStatus(text);
+                              this.onSearch(text);
                             },
                           ),
                         ),
@@ -99,17 +126,12 @@ class _HomeScreenPageState extends State<HomeScreenPage> {
               delegate: SliverChildBuilderDelegate(
                 (context, index) {
                   return InkWell(
-                    onTap: () => this.showPokemonDetailsPage(isSearching
-                        ? filteredPokemonList[index]
-                        : initialPokemonList[index]),
-                    child: PokemonTile(isSearching
-                        ? filteredPokemonList[index]
-                        : initialPokemonList[index]),
+                    onTap: () => this.showPokemonDetailsPage(
+                        this.pokemonList[index], context),
+                    child: PokemonTile(this.pokemonList[index]),
                   );
                 },
-                childCount: isSearching
-                    ? filteredPokemonList.length
-                    : initialPokemonList.length,
+                childCount: this.pokemonList.length,
               ),
               gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
                 maxCrossAxisExtent: 140.0,
@@ -124,40 +146,10 @@ class _HomeScreenPageState extends State<HomeScreenPage> {
     );
   }
 
-  void setSearchBarStatus(String text) {
-    setState(() {
-      isSearching = text.isNotEmpty;
-      if (text.isNotEmpty) {
-        filteredPokemonList = initialPokemonList
-            .where((u) => (u.name.toLowerCase().contains(text.toLowerCase())))
-            .toList();
-      }
-    });
-  }
-
-  static Future<String> _loadAsset(String path) async {
-    return await rootBundle.loadString(path);
-  }
-
-  void showPokemonDetailsPage(Pokemon pokemon) {
+  void showPokemonDetailsPage(Pokemon pokemon, BuildContext context) {
     Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-      return PokemonDetailsPage(pokemonServices.fetchPokemonData(pokemon.id));
+      return PokemonDetailsPageConnector(id: pokemon.id,);
     }));
-  }
-
-  Future<void> loadCSV() async {
-    _loadAsset('assets/pokemon.csv').then((dynamic output) {
-      List<Pokemon> pokemons = <Pokemon>[];
-
-      LineSplitter.split(output)
-          .forEach((line) => pokemons.add(Pokemon.fromCSV(line.split(','))));
-
-      pokemons.removeAt(0);
-
-      setState(() {
-        initialPokemonList = pokemons;
-      });
-    });
   }
 }
 

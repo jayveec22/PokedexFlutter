@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'PokemonDetails.dart';
+import 'package:pokedex_app_flutter/models/pokemon_details_model.dart';
 
 enum StatisticsType {
   hp,

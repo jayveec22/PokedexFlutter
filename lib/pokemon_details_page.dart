@@ -1,88 +1,107 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'Models/PokemonData.dart';
-import 'Models/PokemonStatistics.dart';
+import 'package:async_redux/async_redux.dart';
+import 'package:pokedex_app_flutter/models/app_state.dart';
+import 'package:pokedex_app_flutter/models/pokemon_data_model.dart';
+import 'package:pokedex_app_flutter/models/pokemon_statistics.dart';
+import 'package:pokedex_app_flutter/state/action_pokemon_details.dart';
+
+class PokemonDetailsPageConnector extends StatelessWidget {
+  final int id;
+
+  PokemonDetailsPageConnector({this.id});
+
+  @override
+  Widget build(BuildContext context) {
+    return StoreConnector<AppState, PokemonDetailsVM>(
+      model: PokemonDetailsVM(),
+      onInit: (store) => store.dispatch(FetchPokemonDataAction(id: this.id)),
+      builder: (BuildContext context, PokemonDetailsVM vm) =>
+          PokemonDetailsPage(
+        pokemonData: vm.pokemonData,
+        id: this.id,
+      ),
+    );
+  }
+}
+
+class PokemonDetailsVM extends BaseModel<AppState> {
+  PokemonDetailsVM();
+
+  PokemonData pokemonData;
+
+  PokemonDetailsVM.build({@required this.pokemonData})
+      : super(equals: [pokemonData]);
+
+  @override
+  BaseModel fromStore() =>
+      PokemonDetailsVM.build(pokemonData: state.pokemonData);
+}
 
 class PokemonDetailsPage extends StatefulWidget {
-  final Future<PokemonData> futurePokemonData;
+  final PokemonData pokemonData;
+  final int id;
 
-  PokemonDetailsPage(this.futurePokemonData);
+  PokemonDetailsPage({this.pokemonData, this.id});
 
   @override
   _PokemonDetailsPageState createState() => _PokemonDetailsPageState();
 }
 
 class _PokemonDetailsPageState extends State<PokemonDetailsPage> {
-  PokemonData pokemonData;
-  Map<int, Widget> detailPages;
-  int sharedValue = 0;
+  int pageNumber = 0;
+
+  bool isPokemonDataAvailable() {
+    return widget.pokemonData.pokemonDetails != null &&
+        widget.pokemonData.pokemonDetails.id == widget.id;
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        title: FutureBuilder<PokemonData>(
-            future: widget.futurePokemonData,
-            builder: (context, snapshot) {
-              if (snapshot.hasData) {
-                return Text(snapshot.data.pokemonDetails.name.toUpperCase());
-              }
-
-              return Text('');
-            }),
+        title: this.isPokemonDataAvailable()
+            ? Text('${widget.pokemonData.pokemonDetails.name.toUpperCase()}')
+            : Text(''),
       ),
-      body: SingleChildScrollView(
-        child: Container(
-          color: Colors.white,
-          child: Column(
-            children: <Widget>[
-              const Padding(
-                padding: EdgeInsets.all(16.0),
-              ),
-              SizedBox(
-                width: 300.0,
-                child: CupertinoSegmentedControl<int>(
-                  selectedColor: Colors.black87,
-                  borderColor: Colors.black87,
-                  children: {
-                    0: Text('Details'),
-                    1: Text('Statistics'),
-                  },
-                  onValueChanged: (int val) {
-                    setState(() {
-                      sharedValue = val;
-                    });
-                  },
-                  groupValue: sharedValue,
+      body: this.isPokemonDataAvailable()
+          ? SingleChildScrollView(
+              child: Container(
+                color: Colors.white,
+                child: Column(
+                  children: <Widget>[
+                    const Padding(
+                      padding: EdgeInsets.all(16.0),
+                    ),
+                    SizedBox(
+                      width: 300.0,
+                      child: CupertinoSegmentedControl<int>(
+                          selectedColor: Colors.black87,
+                          borderColor: Colors.black87,
+                          children: {
+                            0: Text('Details'),
+                            1: Text('Statistics'),
+                          },
+                          onValueChanged: (int val) {
+                            setState(() {
+                              this.pageNumber = val;
+                            });
+                          },
+                          groupValue: this.pageNumber),
+                    ),
+                    if (this.pageNumber == 0) ...[
+                      PokemonOverviewPage(pokemonData: widget.pokemonData),
+                    ] else ...[
+                      PokemonStatisticsPage(pokemonData: widget.pokemonData),
+                    ],
+                  ],
                 ),
               ),
-              FutureBuilder<PokemonData>(
-                future: widget.futurePokemonData,
-                builder: (context, snapshot) {
-                  if (snapshot.hasData) {
-                    this.pokemonData = snapshot.data;
-                    if (this.detailPages == null) {
-                      this.detailPages = <int, Widget>{
-                        0: PokemonOverviewPage(pokemonData: this.pokemonData),
-                        1: PokemonStatisticsPage(pokemonData: this.pokemonData),
-                      };
-                    }
-
-                    return this.detailPages[sharedValue];
-                  } else if (snapshot.hasError) {
-                    return Text('Pokemon request error: ${snapshot.error}');
-                  }
-
-                  return Center(
-                    child: CircularProgressIndicator(),
-                  );
-                },
-              ),
-            ],
-          ),
-        ),
-      ),
+            )
+          : Center(
+              child: CircularProgressIndicator(),
+            ),
     );
   }
 }

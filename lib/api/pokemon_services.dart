@@ -1,26 +1,28 @@
+
 import 'dart:convert';
-import 'package:http/http.dart' as http;
+
+import 'package:flutter/services.dart';
 import 'package:http/http.dart';
-import '../Models/PokemonData.dart';
-import '../Models/PokemonDescription.dart';
-import '../Models/PokemonDetails.dart';
-import '../Models/PokemonEvolution.dart';
-import '../Models/PokemonEvolutionNode.dart';
+import 'package:http/http.dart' as http;
+import 'package:pokedex_app_flutter/models/pokemon_data_model.dart';
+import 'package:pokedex_app_flutter/models/pokemon_description_model.dart';
+import 'package:pokedex_app_flutter/models/pokemon_details_model.dart';
+import 'package:pokedex_app_flutter/models/pokemon_evolution_model.dart';
+import 'package:pokedex_app_flutter/models/pokemon_evolution_node.dart';
+import 'package:pokedex_app_flutter/models/pokemon_model.dart';
 
 class PokemonServices {
-  
-    Future<PokemonData> fetchPokemonData(String id) async {
+  Future<PokemonData> fetchPokemonData(int id) async {
     PokemonData pokemonData = PokemonData();
     pokemonData.pokemonDetails = await this.fetchPokemonDetails(id);
-    pokemonData.pokemonDescription =
-        await this.fetchPokemonDescription(id);
+    pokemonData.pokemonDescription = await this.fetchPokemonDescription(id);
     pokemonData.pokemonEvolutions = await this.fetchPokemonEvolution(
         pokemonData.pokemonDescription.evolutionChain.url);
 
     return pokemonData;
   }
 
-  Future<PokemonDetails> fetchPokemonDetails(String id) async {
+  Future<PokemonDetails> fetchPokemonDetails(int id) async {
     final Response response =
         await http.get('https://pokeapi.co/api/v2/pokemon/$id/');
 
@@ -32,7 +34,7 @@ class PokemonServices {
     }
   }
 
-  Future<PokemonDescription> fetchPokemonDescription(String id) async {
+  Future<PokemonDescription> fetchPokemonDescription(int id) async {
     final Response response =
         await http.get('https://pokeapi.co/api/v2/pokemon-species/$id/');
 
@@ -56,7 +58,6 @@ class PokemonServices {
         evolution.chain,
         evolutionNode,
       );
-      
     } else {
       throw Exception(
           'Failed to load Pokemon Evolution. Request Status Code ${response.statusCode}');
@@ -64,14 +65,14 @@ class PokemonServices {
   }
 
   List<PokemonEvolutionNode> parseEvolutions(
-      Chain chain, List<PokemonEvolutionNode> evolutions) {
+    Chain chain, List<PokemonEvolutionNode> evolutions) {
     String name = chain.species.name;
     String id = Uri.parse(chain.species.url)
         .pathSegments
         .lastWhere((element) => element.isNotEmpty);
 
     evolutions.add(PokemonEvolutionNode(name, id));
-    
+
     if (chain.evolvesTo != null && chain.evolvesTo.isNotEmpty) {
       List<EvolvesTo> evolvesTo = chain.evolvesTo;
       String name = evolvesTo.first.species.name;
@@ -86,6 +87,22 @@ class PokemonServices {
         this.parseEvolutions(evolvesTo.first.evolvesTo.first, evolutions);
       }
     }
-      return evolutions;
+    return evolutions;
+  }
+
+  static Future<String> _loadAsset(String path) async {
+    return await rootBundle.loadString(path);
+  }
+
+  Future<List<Pokemon>> loadCSV() async {
+    List<Pokemon> pokemons = [];
+    await _loadAsset('assets/pokemon.csv').then((dynamic output) {
+      LineSplitter.split(output)
+          .forEach((line) => pokemons.add(Pokemon.fromCSV(line.split(','))));
+
+      pokemons.removeAt(0);
+    });
+
+    return pokemons;
   }
 }
