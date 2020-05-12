@@ -25,9 +25,13 @@ dependencies:
     sdk: flutter
 
   http: ^0.12.1
-  redux: ^4.0.0
-  flutter_redux: ^0.6.0
-  async_redux: ^2.8.1
+  built_value_generator: any
+  freezed_annotation: any
+
+  ffuf_flutter_architecture:
+    git:
+      url: git@bitbucket.org:FFUF/ffuf-flutter-architecture.git
+      path: ffuf-flutter-architecture
 
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
@@ -36,6 +40,11 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  
+  freezed: any
+  json_serializable: any
+  json_annotation: any
+  build_runner: any
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

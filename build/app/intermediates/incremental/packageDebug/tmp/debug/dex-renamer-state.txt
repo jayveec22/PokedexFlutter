@@ -1,4 +1,0 @@
-#Thu May 07 12:30:55 PST 2020
-base.0=/Users/jayveecaayao/PokedexFlutter/build/app/intermediates/dex/debug/mergeDexDebug/out/classes.dex
-path.0=classes.dex
-renamed.0=classes.dex

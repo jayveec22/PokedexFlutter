@@ -1,16 +1,17 @@
 import 'dart:async';
-import 'package:pokedex_app_flutter/models/app_state.dart';
 import 'package:async_redux/async_redux.dart';
-import 'package:pokedex_app_flutter/models/pokemon_model.dart';
-import 'package:pokedex_app_flutter/api/pokemon_services.dart';
+import 'package:pokedex_app_flutter/apis/pokemon_api/handler/pokemon_list_csv.dart';
+import 'package:pokedex_app_flutter/apis/pokemon_api/model/pokemon_model.dart';
+import 'package:pokedex_app_flutter/apis/pokemon_api/pokemon_services.dart';
+import 'package:pokedex_app_flutter/state/app_state.dart';
 
 final pokemonServices = new PokemonServices();
 
 class InitializePokemonListAction extends ReduxAction<AppState> {
   @override
   Future<AppState> reduce() async {
-    List<Pokemon> value = await pokemonServices.loadCSV();
-    return state.copy(initialPokemonList: value, pokemonList: value);
+    List<Pokemon> value = await PokemonListCsv().loadCSV();
+    return state.copyWith(initialPokemonList: value, pokemonList: value);
   }
 }
 
@@ -25,11 +26,6 @@ class FilterPokemonListAction extends ReduxAction<AppState> {
         ? state.initialPokemonList.where((element) => element.name.contains(text)).toList()
         : state.initialPokemonList;
 
-    return state.copy(pokemonList: value);
+    return state.copyWith(pokemonList: value);
   }
-}
-
-class PokemonDetailPageNumber {
-  final int payload;
-  PokemonDetailPageNumber({this.payload});
 }
