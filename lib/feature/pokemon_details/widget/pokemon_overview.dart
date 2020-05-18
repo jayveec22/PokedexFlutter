@@ -6,7 +6,7 @@ class PokemonOverviewPage extends StatelessWidget {
 
   PokemonOverviewPage({this.pokemonData});
 
-     String englishDescription() {
+  String englishDescription() {
     String description = pokemonData.pokemonDescription.flavorText
         .firstWhere((element) => element.language.name == 'en')
         .flavorText;

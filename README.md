@@ -7,14 +7,17 @@ A new Flutter project.
 This project is a starting point for a Flutter application.
 
 Home Screen Page:
-![image (5)](https://user-images.githubusercontent.com/55819664/81254994-1cefec80-905f-11ea-87f1-54136ffd1bd7.png)
+
+![image](https://user-images.githubusercontent.com/55819664/82171633-8d69f980-98fa-11ea-82e6-52bcd3604917.png)
 
 Detail Page:
 
 Overview
+
 ![image (7)](https://user-images.githubusercontent.com/55819664/81255280-e23a8400-905f-11ea-87ef-e72779db535a.png)
 
 Statistics
+
 ![image (8)](https://user-images.githubusercontent.com/55819664/81255284-e4044780-905f-11ea-8d9e-f75b947363cf.png)
 
 

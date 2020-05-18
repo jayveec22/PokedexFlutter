@@ -42,32 +42,40 @@ class PokemonTile extends StatelessWidget {
             Row(
               children: <Widget>[
                 Expanded(
-                  child: Container(
-                    color: Colors.black,
-                    child: Text(
-                      '${double.parse(this.pokemon.height) / 10} cm',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontSize: 13.0,
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
+                  child: FittedBox(
+                    fit: BoxFit.fitWidth,
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 5.0),
+                      color: Colors.black,
+                      child: Text(
+                        '${double.parse(this.pokemon.height) / 10} cm',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          fontSize: 13.0,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        maxLines: 1,
                       ),
-                      maxLines: 1,
                     ),
                   ),
                 ),
                 Expanded(
-                  child: Container(
-                    color: Colors.white,
-                    child: Text(
-                      '${double.parse(this.pokemon.weight) / 10} kg',
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontSize: 13.0,
-                        color: Colors.black,
-                        fontWeight: FontWeight.bold,
+                  child: FittedBox(
+                    fit: BoxFit.fitWidth,
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 5.0),
+                      child: Text(
+                        '${double.parse(this.pokemon.weight) / 10} kg',
+                        textAlign: TextAlign.center,
+                        overflow: TextOverflow.fade,
+                        style: TextStyle(
+                          fontSize: 13.0,
+                          color: Colors.black,
+                          fontWeight: FontWeight.bold,
+                        ),
+                        maxLines: 1,
                       ),
-                      maxLines: 1,
                     ),
                   ),
                 ),
