@@ -12,5 +12,6 @@ abstract class PokemonEvolution with _$PokemonEvolution {
     @required Chain chain,
   }) = _PokemonEvolution;
 
-  factory PokemonEvolution.fromJson(Map<String, dynamic> json) => _$PokemonEvolutionFromJson(json);
+  factory PokemonEvolution.fromJson(Map<String, dynamic> json) =>
+      _$PokemonEvolutionFromJson(json);
 }

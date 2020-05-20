@@ -12,7 +12,8 @@ abstract class Pokemon with _$Pokemon {
     String weight,
   }) = _Pokemon;
 
-  factory Pokemon.fromJson(Map<String, dynamic> json) => _$PokemonFromJson(json);
+  factory Pokemon.fromJson(Map<String, dynamic> json) =>
+      _$PokemonFromJson(json);
 
   factory Pokemon.fromCSV(List<String> items) => Pokemon(
         id: int.tryParse(items[0] ?? 0),

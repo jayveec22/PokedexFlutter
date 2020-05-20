@@ -9,9 +9,12 @@ part 'pokemon_description_model.g.dart';
 @freezed
 abstract class PokemonDescription with _$PokemonDescription {
   factory PokemonDescription({
-    @required @JsonKey(name: 'flavor_text_entries') List<FlavorTexts> flavorText,
+    @required
+    @JsonKey(name: 'flavor_text_entries')
+        List<FlavorTexts> flavorText,
     @required @JsonKey(name: 'evolution_chain') EvolutionChain evolutionChain,
   }) = _PokemonDescription;
 
-  factory PokemonDescription.fromJson(Map<String, dynamic> json) => _$PokemonDescriptionFromJson(json);
+  factory PokemonDescription.fromJson(Map<String, dynamic> json) =>
+      _$PokemonDescriptionFromJson(json);
 }

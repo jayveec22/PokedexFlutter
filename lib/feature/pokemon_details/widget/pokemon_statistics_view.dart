@@ -47,35 +47,45 @@ class PokemonStatisticsPage extends StatelessWidget {
                 pokemonDetails: this.pokemonData.pokemonDetails,
               ),
             ),
-            SizedBox(height: 10.0),
+            SizedBox(
+              height: 10.0,
+            ),
             StatisticsProgressBar(
               PokemonStatistics(
                 statistic: StatisticsType.attack,
                 pokemonDetails: this.pokemonData.pokemonDetails,
               ),
             ),
-            SizedBox(height: 10.0),
+            SizedBox(
+              height: 10.0,
+            ),
             StatisticsProgressBar(
               PokemonStatistics(
                 statistic: StatisticsType.defense,
                 pokemonDetails: this.pokemonData.pokemonDetails,
               ),
             ),
-            SizedBox(height: 10.0),
+            SizedBox(
+              height: 10.0,
+            ),
             StatisticsProgressBar(
               PokemonStatistics(
                 statistic: StatisticsType.specialAttack,
                 pokemonDetails: this.pokemonData.pokemonDetails,
               ),
             ),
-            SizedBox(height: 10.0),
+            SizedBox(
+              height: 10.0,
+            ),
             StatisticsProgressBar(
               PokemonStatistics(
                 statistic: StatisticsType.specialDefense,
                 pokemonDetails: this.pokemonData.pokemonDetails,
               ),
             ),
-            SizedBox(height: 10.0),
+            SizedBox(
+              height: 10.0,
+            ),
             StatisticsProgressBar(
               PokemonStatistics(
                 statistic: StatisticsType.speed,

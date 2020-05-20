@@ -5,20 +5,15 @@ import 'package:pokedex_app_flutter/apis/pokemon_api/model/pokemon_data_model.da
 import 'package:pokedex_app_flutter/apis/pokemon_api/model/pokemon_description_model.dart';
 import 'package:pokedex_app_flutter/apis/pokemon_api/model/pokemon_details_model.dart';
 import 'package:pokedex_app_flutter/apis/pokemon_api/model/pokemon_evolution_node.dart';
-import 'package:pokedex_app_flutter/apis/pokemon_api/pokemon_services.dart';
-import 'package:pokedex_app_flutter/state/app_state.dart';
+import 'package:pokedex_app_flutter/state/pokemon_details/pokemon_details_state.dart';
 
-final pokemonServices = new PokemonServices();
-
-class FetchPokemonDataAction extends ReduxAction<AppState> {
+class FetchPokemonDataAction extends ReduxAction<PokemonDetailsState> {
   final int id;
 
   FetchPokemonDataAction({this.id});
 
   @override
-  Future<AppState> reduce() async {
-    await ApiService().initApis();
-
+  Future<PokemonDetailsState> reduce() async {
     PokemonDetails pokemonDetails =
         await ApiService().pokemonDetailsApi.fetchPokemonDetails(id);
 
@@ -34,6 +29,8 @@ class FetchPokemonDataAction extends ReduxAction<AppState> {
       pokemonDescription: pokemonDescription,
       pokemonEvolution: pokemonEvolution,
     );
-    return state.copyWith(pokemonData: value);
+    return state.copyWith(
+      pokemonData: value,
+    );
   }
 }

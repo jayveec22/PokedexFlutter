@@ -6,15 +6,14 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'pokemon_data_model.freezed.dart';
 part 'pokemon_data_model.g.dart';
 
+@freezed
+abstract class PokemonData with _$PokemonData {
+  factory PokemonData({
+    @required PokemonDetails pokemonDetails,
+    @required PokemonDescription pokemonDescription,
+    @required List<PokemonEvolutionNode> pokemonEvolution,
+  }) = _PokemonData;
 
-  @freezed
-  abstract class PokemonData with _$PokemonData {
-    factory PokemonData({
-      @required PokemonDetails pokemonDetails,
-      @required PokemonDescription pokemonDescription,
-      @required List<PokemonEvolutionNode> pokemonEvolution,
-    }) = _PokemonData;
-
-    factory PokemonData.fromJson(Map<String, dynamic> json) => _$PokemonDataFromJson(json);
-  }
-
+  factory PokemonData.fromJson(Map<String, dynamic> json) =>
+      _$PokemonDataFromJson(json);
+}

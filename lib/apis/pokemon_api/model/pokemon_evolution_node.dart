@@ -11,7 +11,6 @@ abstract class PokemonEvolutionNode with _$PokemonEvolutionNode {
     @required String name,
   }) = _PokemonEvolutionNode;
 
-  factory PokemonEvolutionNode.fromJson(Map<String, dynamic> json) => _$PokemonEvolutionNodeFromJson(json);
+  factory PokemonEvolutionNode.fromJson(Map<String, dynamic> json) =>
+      _$PokemonEvolutionNodeFromJson(json);
 }
-
-

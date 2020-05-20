@@ -2,22 +2,53 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:async_redux/async_redux.dart';
 import 'package:pokedex_app_flutter/apis/pokemon_api/model/pokemon_data_model.dart';
+import 'package:pokedex_app_flutter/feature/pokemon_details/pokemon_details_page_vm.dart';
 import 'package:pokedex_app_flutter/feature/pokemon_details/widget/pokemon_overview.dart';
 import 'package:pokedex_app_flutter/feature/pokemon_details/widget/pokemon_statistics_view.dart';
-import 'package:pokedex_app_flutter/state/action_pokemon_details.dart';
-import 'package:pokedex_app_flutter/state/app_state.dart';
+import 'package:pokedex_app_flutter/state/actions/action_pokemon_details.dart';
+import 'package:pokedex_app_flutter/state/pokemon_details/pokemon_details_state.dart';
 
-class PokemonDetailsVM extends BaseModel<AppState> {
-  PokemonDetailsVM();
+class PokemonDetailsStore extends StatefulWidget {
+  static const String route = 'pokemonDetails';
+  final int id;
 
-  PokemonData pokemonData;
-
-  PokemonDetailsVM.build({@required this.pokemonData})
-      : super(equals: [pokemonData]);
+  PokemonDetailsStore({
+    Key key,
+    this.id,
+  }) : super(key: key);
 
   @override
-  BaseModel fromStore() =>
-      PokemonDetailsVM.build(pokemonData: state.pokemonData);
+  _PokemonDetailsStoreState createState() => _PokemonDetailsStoreState();
+}
+
+class _PokemonDetailsStoreState extends State<PokemonDetailsStore> {
+  Store<PokemonDetailsState> store;
+
+  @override
+  void initState() {
+    super.initState();
+
+    store = Store<PokemonDetailsState>(
+      initialState: PokemonDetailsState(),
+      actionObservers: [Log.printer(formatter: Log.verySimpleFormatter)],
+    );
+
+    store.dispatch(
+      FetchPokemonDataAction(
+        id: widget.id,
+      ),
+    );
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return StoreProvider<PokemonDetailsState>(
+      store: this.store,
+      child: PokemonDetailsPage(
+        id: widget.id,
+      ),
+    );
+  }
 }
 
 class PokemonDetailsPage extends StatefulWidget {
@@ -33,15 +64,13 @@ class PokemonDetailsPage extends StatefulWidget {
 class _PokemonDetailsPageState extends State<PokemonDetailsPage> {
   int pageNumber = 0;
 
-  bool _isPokemonDataAvailable(PokemonData pokemonData) {
-    return pokemonData != null && pokemonData.pokemonDetails.id == widget.id;
-  }
+  bool _isPokemonDataAvailable(PokemonData pokemonData) =>
+      pokemonData != null && pokemonData.pokemonDetails.id == widget.id;
 
   @override
   Widget build(BuildContext context) {
-    return StoreConnector<AppState, PokemonDetailsVM>(
+    return StoreConnector<PokemonDetailsState, PokemonDetailsVM>(
       model: PokemonDetailsVM(),
-      onInit: (store) => store.dispatch(FetchPokemonDataAction(id: widget.id)),
       builder: (BuildContext context, PokemonDetailsVM vm) {
         return Scaffold(
           backgroundColor: Colors.white,
@@ -68,18 +97,14 @@ class _PokemonDetailsPageState extends State<PokemonDetailsPage> {
                                 0: Text('Details'),
                                 1: Text('Statistics'),
                               },
-                              onValueChanged: (int val) {
-                                setState(() {
-                                  this.pageNumber = val;
-                                });
-                              },
+                              onValueChanged: (int val) =>
+                                  setState(() => this.pageNumber = val),
                               groupValue: this.pageNumber),
                         ),
-                        if (this.pageNumber == 0) ...[
-                          PokemonOverviewPage(pokemonData: vm.pokemonData),
-                        ] else ...[
-                          PokemonStatisticsPage(pokemonData: vm.pokemonData),
-                        ],
+                        if (this.pageNumber == 0)
+                          PokemonOverviewPage(pokemonData: vm.pokemonData)
+                        else
+                          PokemonStatisticsPage(pokemonData: vm.pokemonData)
                       ],
                     ),
                   ),
@@ -92,4 +117,3 @@ class _PokemonDetailsPageState extends State<PokemonDetailsPage> {
     );
   }
 }
-

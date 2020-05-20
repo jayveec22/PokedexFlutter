@@ -23,10 +23,18 @@ class PokemonEvolutionApi {
         .pathSegments
         .lastWhere((element) => element.isNotEmpty);
 
-    evolutions.add(PokemonEvolutionNode(id: id, name: name));
+    evolutions.add(
+      PokemonEvolutionNode(
+        id: id,
+        name: name,
+      ),
+    );
 
     if (chain.evolvesTo != null && chain.evolvesTo.isNotEmpty) {
-      this.parseEvolutions(chain.evolvesTo.first, evolutions);
+      this.parseEvolutions(
+        chain.evolvesTo.first,
+        evolutions,
+      );
     }
 
     return evolutions;

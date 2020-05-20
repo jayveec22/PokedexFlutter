@@ -6,7 +6,6 @@ class PokemonDescriptionApi {
   PokemonDescriptionApi(ApiClient apiClient) : apiClient = apiClient;
 
   Future<PokemonDescription> fetchPokemonDescription(int id) async {
-
     final queryParams = <String, dynamic>{};
 
     return await apiClient.dio

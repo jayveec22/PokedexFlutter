@@ -10,5 +10,6 @@ abstract class EvolutionChain with _$EvolutionChain {
     @required String url,
   }) = _EvolutionChain;
 
-  factory EvolutionChain.fromJson(Map<String, dynamic> json) => _$EvolutionChainFromJson(json);
+  factory EvolutionChain.fromJson(Map<String, dynamic> json) =>
+      _$EvolutionChainFromJson(json);
 }

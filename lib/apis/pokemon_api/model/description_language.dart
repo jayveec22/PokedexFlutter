@@ -10,5 +10,6 @@ abstract class Language with _$Language {
     @required String name,
   }) = _Language;
 
-  factory Language.fromJson(Map<String, dynamic> json) => _$LanguageFromJson(json);
+  factory Language.fromJson(Map<String, dynamic> json) =>
+      _$LanguageFromJson(json);
 }

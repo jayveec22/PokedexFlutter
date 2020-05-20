@@ -142,8 +142,7 @@ class PokemonStatistics {
     double value = this
             .pokemonDetails
             .stats
-            .firstWhere(
-                (element) => element.stat.name == 'special-defense')
+            .firstWhere((element) => element.stat.name == 'special-defense')
             .baseStat
             .toDouble() /
         200.0;

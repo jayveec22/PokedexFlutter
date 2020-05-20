@@ -15,7 +15,6 @@ class ApiService {
 
   PokemonEvolutionApi get pokemonEvolutionApi => _pokemonEvolutionApi;
 
-
   Future<void> initApis() async {
     final pokemonAPIClient = ApiClient(baseUrl: AppConfig.baseUrl);
     _pokemonDetailsApi = PokemonDetailsApi(pokemonAPIClient);

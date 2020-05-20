@@ -10,5 +10,6 @@ abstract class PokemonType with _$PokemonType {
     @required String name,
   }) = _PokemonType;
 
-  factory PokemonType.fromJson(Map<String, dynamic> json) => _$PokemonTypeFromJson(json);
+  factory PokemonType.fromJson(Map<String, dynamic> json) =>
+      _$PokemonTypeFromJson(json);
 }

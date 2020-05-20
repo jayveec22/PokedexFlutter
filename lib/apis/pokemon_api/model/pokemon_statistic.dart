@@ -10,5 +10,6 @@ abstract class Statistic with _$Statistic {
     @required String name,
   }) = _Statistic;
 
-  factory Statistic.fromJson(Map<String, dynamic> json) => _$StatisticFromJson(json);
+  factory Statistic.fromJson(Map<String, dynamic> json) =>
+      _$StatisticFromJson(json);
 }

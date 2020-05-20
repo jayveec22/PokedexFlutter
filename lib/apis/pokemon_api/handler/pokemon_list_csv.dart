@@ -11,8 +11,13 @@ class PokemonListCsv {
   Future<List<Pokemon>> loadCSV() async {
     List<Pokemon> pokemons = [];
     await _loadAsset('assets/pokemon.csv').then((dynamic output) {
-      LineSplitter.split(output)
-          .forEach((line) => pokemons.add(Pokemon.fromCSV(line.split(','))));
+      LineSplitter.split(output).forEach(
+        (line) => pokemons.add(
+          Pokemon.fromCSV(
+            line.split(','),
+          ),
+        ),
+      );
 
       pokemons.removeAt(0);
     });

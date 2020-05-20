@@ -5,14 +5,6 @@ import 'package:pokedex_app_flutter/state/app_state.dart';
 import 'package:pokedex_app_flutter/utilities/app_router.dart';
 import 'package:pokedex_app_flutter/utilities/app_starter.dart';
 
-// void main() {
-//   Store<AppState> store;
-//   var state = AppState.initialState();
-//   store = Store<AppState>(initialState: state);
-
-//   runApp(Pokedex(store: store));
-// }
-
 class FlutterPokedex extends StatelessWidget {
   final Store<AppState> store;
 
@@ -24,7 +16,9 @@ class FlutterPokedex extends StatelessWidget {
       store: store,
       child: MaterialApp(
         title: 'Pokedex',
-        theme: ThemeData(primaryColor: Colors.lightBlueAccent),
+        theme: ThemeData(
+          primaryColor: Colors.lightBlueAccent,
+        ),
         home: Stack(
           children: <Widget>[
             UserExceptionWidget<AppState>(

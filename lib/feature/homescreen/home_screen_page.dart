@@ -1,40 +1,22 @@
 import 'package:ffuf_flutter_architecture/ffuf_flutter_architecture.dart';
 import 'package:flutter/material.dart';
-import 'package:pokedex_app_flutter/apis/pokemon_api/model/pokemon_model.dart';
+import 'package:pokedex_app_flutter/feature/homescreen/home_screen_page_vm.dart';
 import 'package:pokedex_app_flutter/feature/homescreen/widget/pokemon_tile.dart';
 import 'package:pokedex_app_flutter/feature/pokemon_details/pokemon_details_page.dart';
-import 'package:pokedex_app_flutter/state/action_home_screen.dart';
+import 'package:pokedex_app_flutter/state/actions/action_home_screen.dart';
 import 'package:pokedex_app_flutter/state/app_state.dart';
 
-class HomeScreenVM extends BaseModel<AppState> {
-  HomeScreenVM();
-  List<Pokemon> initialPokemonList;
-  List<Pokemon> pokemonList;
-  Function(String) onSearch;
-
-  HomeScreenVM.build({
-    @required this.initialPokemonList,
-    @required this.pokemonList,
-    @required this.onSearch,
-  }) : super(equals: [initialPokemonList, pokemonList]);
-
-  @override
-  BaseModel fromStore() => HomeScreenVM.build(
-      initialPokemonList: state.initialPokemonList,
-      pokemonList: state.pokemonList,
-      onSearch: (text) => dispatch(FilterPokemonListAction(text: text)));
-}
-
 class HomeScreenPage extends StatelessWidget {
-  HomeScreenPage({Key key}) : super(key: key);
+  HomeScreenPage({
+    Key key,
+  }) : super(key: key);
   static const String route = '/';
 
-  void _navigateToPokemonDetails(BuildContext context, int id) {
-    Navigator.of(context).pushNamed(
-      PokemonDetailsPage.route,
-      arguments: id,
-    );
-  }
+  void _navigateToPokemonDetails(BuildContext context, int id) =>
+      Navigator.of(context).pushNamed(
+        PokemonDetailsPage.route,
+        arguments: id,
+      );
 
   @override
   Widget build(Object context) {
@@ -48,9 +30,7 @@ class HomeScreenPage extends StatelessWidget {
               )
             : Scaffold(
                 body: GestureDetector(
-                  onTap: () {
-                    FocusScope.of(context).requestFocus(FocusNode());
-                  },
+                  onTap: () => FocusScope.of(context).requestFocus(FocusNode()),
                   child: CustomScrollView(
                     slivers: <Widget>[
                       SliverAppBar(
@@ -66,7 +46,10 @@ class HomeScreenPage extends StatelessWidget {
                           ),
                         ),
                         bottom: PreferredSize(
-                          preferredSize: Size(25.0, 25.0),
+                          preferredSize: Size(
+                            25.0,
+                            25.0,
+                          ),
                           child: Container(
                             height: 35.0,
                             child: Stack(
@@ -78,9 +61,9 @@ class HomeScreenPage extends StatelessWidget {
                                   child: Container(
                                     height: 30.0,
                                     decoration: BoxDecoration(
-                                        color: Colors.white60,
-                                        borderRadius:
-                                            BorderRadius.circular(5.0)),
+                                      color: Colors.white60,
+                                      borderRadius: BorderRadius.circular(5.0),
+                                    ),
                                     child: TextField(
                                       textAlign: TextAlign.center,
                                       textAlignVertical:
@@ -89,12 +72,8 @@ class HomeScreenPage extends StatelessWidget {
                                         border: InputBorder.none,
                                         hintText: 'Search Pokemon...',
                                       ),
-                                      onChanged: (text) {
-                                        vm.onSearch(text);
-                                      },
-                                      onSubmitted: (text) {
-                                        vm.onSearch(text);
-                                      },
+                                      onChanged: (text) => vm.onSearch(text),
+                                      onSubmitted: (text) => vm.onSearch(text),
                                     ),
                                   ),
                                 ),

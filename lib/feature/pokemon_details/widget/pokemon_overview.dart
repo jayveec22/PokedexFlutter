@@ -15,9 +15,11 @@ class PokemonOverviewPage extends StatelessWidget {
 
   List<String> typeNames() {
     List<String> names = List<String>();
-    this.pokemonData.pokemonDetails.types.forEach((element) {
-      names.add(element.type.name);
-    });
+    this
+        .pokemonData
+        .pokemonDetails
+        .types
+        .forEach((element) => names.add(element.type.name));
     return names;
   }
 

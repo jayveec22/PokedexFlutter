@@ -12,5 +12,6 @@ abstract class FlavorTexts with _$FlavorTexts {
     @required Language language,
   }) = _FlavorTexts;
 
-  factory FlavorTexts.fromJson(Map<String, dynamic> json) => _$FlavorTextsFromJson(json);
+  factory FlavorTexts.fromJson(Map<String, dynamic> json) =>
+      _$FlavorTextsFromJson(json);
 }

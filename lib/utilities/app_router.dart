@@ -6,16 +6,27 @@ class AppRouter {
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
 
-    /// MainPage
+      /// MainPage
       case HomeScreenPage.route:
-        return MaterialPageRoute(builder: (_) => HomeScreenPage());
+        return MaterialPageRoute(
+          builder: (_) => HomeScreenPage(),
+        );
 
-      case PokemonDetailsPage.route:
-        return MaterialPageRoute (builder: (_) => PokemonDetailsPage(id: settings.arguments as int,));
+      case PokemonDetailsStore.route:
+        return MaterialPageRoute(
+          builder: (_) => PokemonDetailsStore(
+            id: settings.arguments as int,
+          ),
+        );
 
       default:
         return MaterialPageRoute(
-            builder: (_) => Scaffold(body: Center(child: Text('Error: No route defined for ${settings.name}'))));
+          builder: (_) => Scaffold(
+            body: Center(
+              child: Text('Error: No route defined for ${settings.name}'),
+            ),
+          ),
+        );
     }
   }
 }

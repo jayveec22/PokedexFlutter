@@ -9,10 +9,8 @@ part 'app_state.g.dart';
 @freezed
 abstract class AppState with _$AppState {
   factory AppState({
-    @JsonKey(name: 'initialPokemonList', nullable: true)
-        List<Pokemon> initialPokemonList,
-    @JsonKey(name: 'pokemonList', nullable: true) List<Pokemon> pokemonList,
-    @JsonKey(name: 'pokemonData', nullable: true) PokemonData pokemonData,
+    List<Pokemon> initialPokemonList,
+    String searchText,
   }) = _AppState;
 
   factory AppState.fromJson(Map<String, dynamic> json) =>
