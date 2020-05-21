@@ -52,7 +52,6 @@ class _PokemonDetailsStoreState extends State<PokemonDetailsStore> {
 }
 
 class PokemonDetailsPage extends StatefulWidget {
-  static const String route = 'pokemonDetails';
   final int id;
 
   PokemonDetailsPage({this.id});

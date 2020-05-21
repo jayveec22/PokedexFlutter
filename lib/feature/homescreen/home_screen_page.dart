@@ -14,7 +14,7 @@ class HomeScreenPage extends StatelessWidget {
 
   void _navigateToPokemonDetails(BuildContext context, int id) =>
       Navigator.of(context).pushNamed(
-        PokemonDetailsPage.route,
+        PokemonDetailsStore.route,
         arguments: id,
       );
 
@@ -66,9 +66,8 @@ class HomeScreenPage extends StatelessWidget {
                                     ),
                                     child: TextField(
                                       textAlign: TextAlign.center,
-                                      textAlignVertical:
-                                          TextAlignVertical.center,
                                       decoration: InputDecoration(
+                                        contentPadding: EdgeInsets.all(10.0),
                                         border: InputBorder.none,
                                         hintText: 'Search Pokemon...',
                                       ),
