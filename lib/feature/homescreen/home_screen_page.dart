@@ -12,14 +12,17 @@ class HomeScreenPage extends StatelessWidget {
   }) : super(key: key);
   static const String route = '/';
 
-  void _navigateToPokemonDetails(BuildContext context, int id) =>
-      Navigator.of(context).pushNamed(
+  void _navigateToPokemonDetails(BuildContext context, int id) => Navigator.of(context).pushNamed(
         PokemonDetailsStore.route,
         arguments: id,
       );
 
   @override
   Widget build(Object context) {
+    final theme = Theme.of(context);
+    final backgroundImage =
+        theme.brightness == Brightness.light ? 'pokemonBackground.png' : 'pokemonBackgroundDark.jpg';
+
     return StoreConnector<AppState, HomeScreenVM>(
       model: HomeScreenVM(),
       onInit: (store) => store.dispatch(InitializePokemonListAction()),
@@ -86,7 +89,7 @@ class HomeScreenPage extends StatelessWidget {
                               children: <Widget>[
                                 Positioned.fill(
                                   child: Image.asset(
-                                    'assets/images/pokemonBackground.png',
+                                    'assets/images/$backgroundImage',
                                     fit: BoxFit.cover,
                                   ),
                                 ),

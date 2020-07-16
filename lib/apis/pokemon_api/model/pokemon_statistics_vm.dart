@@ -13,10 +13,12 @@ enum StatisticsType {
 class PokemonStatistics {
   final StatisticsType statistic;
   final PokemonDetails pokemonDetails;
+  final Brightness brightness;
 
   PokemonStatistics({
     this.statistic,
     this.pokemonDetails,
+    this.brightness,
   });
 
   String title() {
@@ -70,24 +72,26 @@ class PokemonStatistics {
   }
 
   Color color() {
+    final colorValue = brightness == Brightness.light ? 300 : 200;
+
     switch (this.statistic) {
       case StatisticsType.hp:
-        return Colors.red;
+        return Colors.red[colorValue];
 
       case StatisticsType.attack:
-        return Colors.purple;
+        return Colors.purple[colorValue];
 
       case StatisticsType.defense:
-        return Colors.blue;
+        return Colors.blue[colorValue];
 
       case StatisticsType.specialAttack:
-        return Colors.yellow;
+        return Colors.yellow[colorValue];
 
       case StatisticsType.specialDefense:
-        return Colors.greenAccent;
+        return Colors.green[colorValue];
 
       case StatisticsType.speed:
-        return Colors.pinkAccent;
+        return Colors.pink[colorValue];
 
       default:
         return Colors.white;
@@ -95,68 +99,40 @@ class PokemonStatistics {
   }
 
   double hpValue() {
-    double value = this
-            .pokemonDetails
-            .stats
-            .firstWhere((element) => element.stat.name == 'hp')
-            .baseStat
-            .toDouble() /
-        200.0;
+    double value =
+        this.pokemonDetails.stats.firstWhere((element) => element.stat.name == 'hp').baseStat.toDouble() / 200.0;
     return value;
   }
 
   double attackValue() {
-    double value = this
-            .pokemonDetails
-            .stats
-            .firstWhere((element) => element.stat.name == 'attack')
-            .baseStat
-            .toDouble() /
-        200.0;
+    double value =
+        this.pokemonDetails.stats.firstWhere((element) => element.stat.name == 'attack').baseStat.toDouble() / 200.0;
     return value;
   }
 
   double defenseValue() {
-    double value = this
-            .pokemonDetails
-            .stats
-            .firstWhere((element) => element.stat.name == 'defense')
-            .baseStat
-            .toDouble() /
-        200.0;
+    double value =
+        this.pokemonDetails.stats.firstWhere((element) => element.stat.name == 'defense').baseStat.toDouble() / 200.0;
     return value;
   }
 
   double specialAttackValue() {
-    double value = this
-            .pokemonDetails
-            .stats
-            .firstWhere((element) => element.stat.name == 'special-attack')
-            .baseStat
-            .toDouble() /
-        200.0;
+    double value =
+        this.pokemonDetails.stats.firstWhere((element) => element.stat.name == 'special-attack').baseStat.toDouble() /
+            200.0;
     return value;
   }
 
   double specialDefenseValue() {
-    double value = this
-            .pokemonDetails
-            .stats
-            .firstWhere((element) => element.stat.name == 'special-defense')
-            .baseStat
-            .toDouble() /
-        200.0;
+    double value =
+        this.pokemonDetails.stats.firstWhere((element) => element.stat.name == 'special-defense').baseStat.toDouble() /
+            200.0;
     return value;
   }
 
   double speedValue() {
-    double value = this
-            .pokemonDetails
-            .stats
-            .firstWhere((element) => element.stat.name == 'speed')
-            .baseStat
-            .toDouble() /
-        200.0;
+    double value =
+        this.pokemonDetails.stats.firstWhere((element) => element.stat.name == 'speed').baseStat.toDouble() / 200.0;
     return value;
   }
 }

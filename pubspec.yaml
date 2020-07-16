@@ -25,8 +25,8 @@ dependencies:
     sdk: flutter
 
   http: ^0.12.1
-  built_value_generator: any
   freezed_annotation: any
+  json_annotation: any
 
   ffuf_flutter_architecture:
     git:
@@ -40,10 +40,9 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  
+    
   freezed: any
   json_serializable: any
-  json_annotation: any
   build_runner: any
 
 # For information on the generic Dart part of this file, see the
@@ -51,7 +50,7 @@ dev_dependencies:
 
 # The following section is specific to Flutter.
 flutter:
-  assets:     
+  assets:
     - assets/pokemon.csv
     - assets/images/
     - assets/images/pokemons/

@@ -65,6 +65,7 @@ class PokemonTile extends StatelessWidget {
                     fit: BoxFit.fitWidth,
                     child: Container(
                       padding: const EdgeInsets.symmetric(horizontal: 5.0),
+                      color: Colors.white,
                       child: Text(
                         '${double.parse(this.pokemon.weight) / 10} kg',
                         textAlign: TextAlign.center,
