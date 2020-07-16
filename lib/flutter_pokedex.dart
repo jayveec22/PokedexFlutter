@@ -4,6 +4,7 @@ import 'package:pokedex_app_flutter/feature/homescreen/home_screen_page.dart';
 import 'package:pokedex_app_flutter/state/app_state.dart';
 import 'package:pokedex_app_flutter/utilities/app_router.dart';
 import 'package:pokedex_app_flutter/utilities/app_starter.dart';
+import 'package:pokedex_app_flutter/utilities/theme.dart';
 
 class FlutterPokedex extends StatelessWidget {
   final Store<AppState> store;
@@ -16,9 +17,8 @@ class FlutterPokedex extends StatelessWidget {
       store: store,
       child: MaterialApp(
         title: 'Pokedex',
-        theme: ThemeData(
-          primaryColor: Colors.lightBlueAccent,
-        ),
+        theme: pokedexTheme,
+        darkTheme: pokedexDarkTheme,
         home: Stack(
           children: <Widget>[
             UserExceptionWidget<AppState>(
@@ -28,8 +28,7 @@ class FlutterPokedex extends StatelessWidget {
                   initialRoute: HomeScreenPage.route,
                   onGenerateRoute: AppRouter.generateRoute,
                 ),
-                onWillPop: () async =>
-                    !await navigatorKey.currentState.maybePop(),
+                onWillPop: () async => !await navigatorKey.currentState.maybePop(),
               ),
               requestFlushbar: (key, bContext) => FFuFFlushBar(
                 message: key,

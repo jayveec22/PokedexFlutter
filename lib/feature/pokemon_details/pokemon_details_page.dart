@@ -68,11 +68,12 @@ class _PokemonDetailsPageState extends State<PokemonDetailsPage> {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
+
     return StoreConnector<PokemonDetailsState, PokemonDetailsVM>(
       model: PokemonDetailsVM(),
       builder: (BuildContext context, PokemonDetailsVM vm) {
         return Scaffold(
-          backgroundColor: Colors.white,
           appBar: AppBar(
             title: this._isPokemonDataAvailable(vm.pokemonData)
                 ? Text('${vm.pokemonData.pokemonDetails.name.toUpperCase()}')
@@ -81,7 +82,6 @@ class _PokemonDetailsPageState extends State<PokemonDetailsPage> {
           body: this._isPokemonDataAvailable(vm.pokemonData)
               ? SingleChildScrollView(
                   child: Container(
-                    color: Colors.white,
                     child: Column(
                       children: <Widget>[
                         const Padding(
@@ -90,14 +90,12 @@ class _PokemonDetailsPageState extends State<PokemonDetailsPage> {
                         SizedBox(
                           width: 300.0,
                           child: CupertinoSegmentedControl<int>(
-                              selectedColor: Colors.black87,
                               borderColor: Colors.black87,
                               children: {
                                 0: Text('Details'),
                                 1: Text('Statistics'),
                               },
-                              onValueChanged: (int val) =>
-                                  setState(() => this.pageNumber = val),
+                              onValueChanged: (int val) => setState(() => this.pageNumber = val),
                               groupValue: this.pageNumber),
                         ),
                         if (this.pageNumber == 0)

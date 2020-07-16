@@ -10,6 +10,7 @@ class PokemonStatisticsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Theme.of(context);
     return Padding(
       padding: EdgeInsets.symmetric(
         horizontal: 16.0,
@@ -45,6 +46,7 @@ class PokemonStatisticsPage extends StatelessWidget {
               PokemonStatistics(
                 statistic: StatisticsType.hp,
                 pokemonDetails: this.pokemonData.pokemonDetails,
+                brightness: theme.brightness,
               ),
             ),
             SizedBox(
@@ -54,6 +56,7 @@ class PokemonStatisticsPage extends StatelessWidget {
               PokemonStatistics(
                 statistic: StatisticsType.attack,
                 pokemonDetails: this.pokemonData.pokemonDetails,
+                brightness: theme.brightness,
               ),
             ),
             SizedBox(
@@ -63,6 +66,7 @@ class PokemonStatisticsPage extends StatelessWidget {
               PokemonStatistics(
                 statistic: StatisticsType.defense,
                 pokemonDetails: this.pokemonData.pokemonDetails,
+                brightness: theme.brightness,
               ),
             ),
             SizedBox(
@@ -72,6 +76,7 @@ class PokemonStatisticsPage extends StatelessWidget {
               PokemonStatistics(
                 statistic: StatisticsType.specialAttack,
                 pokemonDetails: this.pokemonData.pokemonDetails,
+                brightness: theme.brightness,
               ),
             ),
             SizedBox(
@@ -81,6 +86,7 @@ class PokemonStatisticsPage extends StatelessWidget {
               PokemonStatistics(
                 statistic: StatisticsType.specialDefense,
                 pokemonDetails: this.pokemonData.pokemonDetails,
+                brightness: theme.brightness,
               ),
             ),
             SizedBox(
@@ -90,6 +96,7 @@ class PokemonStatisticsPage extends StatelessWidget {
               PokemonStatistics(
                 statistic: StatisticsType.speed,
                 pokemonDetails: this.pokemonData.pokemonDetails,
+                brightness: theme.brightness,
               ),
             ),
           ],
